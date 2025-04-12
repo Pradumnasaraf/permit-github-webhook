@@ -1,6 +1,8 @@
 ## GitHub Membership Changes with Permit
 
-Code contains a Node.js server that listens for GitHub organization membership events and syncs the data to Permit accordingly. It uses Redis to store the events for persistence if Permit PDP is down or the server is down. It also retries the failed events every 5 minutes and replays the events after a server restart. 
+Code contains a Node.js server that listens for GitHub organization membership events and syncs the data to Permit accordingly. It uses Redis to store the events for persistence if Permit PDP is down or the server is down. It also retries the failed events every 5 minutes and replays the events after a server restart. It's to demonstrate event-driven updates from changes in GitHub organization membership to Permit.
+
+![GitHub Membership Changes with Permit](/img/event-driven-updates/readme-banner.gif)
 
 ## Features
 
@@ -584,4 +586,12 @@ That's it. We have successfully added Redis to store the events and process them
 - **Avoid Duplication:** As we are removing the event from Redis after successful processing, we can avoid duplication of events.
 - **Auto Retries:** We have used built-in `setInterval` function to retry the failed events stored in Redis every 5 minutes. This way we can ensure that we don't lose any data and can process them later.
 - **Asynchronous Processing:** We are processing the events asynchronously, so we can process multiple events at the same time.
+
+## License  
+
+This project is licensed under the [GNU General Public License v3.0](LICENSE).  
+
+## Security  
+
+For information on reporting security vulnerabilities, please refer to the [Security Policy](SECURITY.md).  
 
