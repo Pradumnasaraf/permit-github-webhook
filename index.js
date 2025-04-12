@@ -9,12 +9,6 @@ const PORT = process.env.PORT || 4000;
 const PDP_URL = process.env.PDP_URL;
 const PERMIT_TOKEN = process.env.PERMIT_TOKEN;
 
-// Validate that required environment variables are set
-if (!PERMIT_TOKEN) {
-  console.error("PERMIT_TOKEN environment variables must be set.");
-  process.exit(1);
-}
-
 const permit = new Permit({
   pdp: PDP_URL,
   token: PERMIT_TOKEN,
@@ -22,6 +16,14 @@ const permit = new Permit({
 // Initialize Redis client for event persistence and retries
 const REDIS_URL = process.env.REDIS_URL;
 const redis = new Redis(REDIS_URL);
+
+// Validate environment variables
+if (!PDP_URL || !PERMIT_TOKEN || !REDIS_URL) {
+  console.error("Missing required environment variables");
+  process.exit(1);
+}
+
+// Set up Redis connection
 redis.on("connect", () => console.log("Connected to Redis"));
 redis.on("error", (err) => console.error("Redis error:", err));
 
