@@ -1,6 +1,6 @@
 ## GitHub Membership Changes with Permit
 
-Code contains a Node.js server that listens for GitHub organization membership events and syncs the data to Permit accordingly. It uses Redis to store the events for persistence if Permit PDP is down or the server is down. It also retries the failed events every 5 minutes and replays the events after a server restart. It's to demonstrate event-driven updates from changes in GitHub organization membership to Permit.
+The repo contains a Node.js server that listens for GitHub organization membership events and syncs the data to Permit accordingly. It uses Redis to store the events for persistence if Permit PDP is down or the server is down. It also retries the failed events every 5 minutes and replays the events after a server restart. It's to demonstrate event-driven updates from changes in GitHub organization membership to Permit.
 
 ![GitHub Membership Changes with Permit](/img/event-driven-updates/readme-banner.gif)
 
@@ -12,7 +12,6 @@ Code contains a Node.js server that listens for GitHub organization membership e
   - Persisting incoming events
   - Retrying failed events every 5 minutes
   - Replaying events after a server restart
-- Built with `Express.js` and `ioredis`
 
 ## Setting up the Project
 
@@ -25,7 +24,7 @@ Sure! Here’s a simplified and polished version:
 
 ### Setting up a Policies, Roles and Resources in Permit
 
-To get started, first we need to create a Policy, Roles and Resource in Permit to manage the access control. If you not familiar how to do it, [here](/quickstart) a quick guide.
+To get started, first we need to create a Policy, Roles and Resource in Permit to manage the access control. If you not familiar how to do it, [here](https://docs.permit.io/quickstart) a quick guide.
 
 As this guide is focused on event-driven updates from change in GitHub organization membership, we will create a resource name and id `membership` and under that we will add actions like `create-repo`, `view-private-repo`, `delete-repo`, `edit-repo`, etc. We keep the naming convention simple and similar to the action we have in GitHub. After creating the resource, it will look like this.
 
@@ -49,14 +48,14 @@ We will be using **Node.js** and **Express** to create a server to listen for Gi
 
 ### Prerequisites
 
-- **Permit API Key:** We need a Permit API key to interact with Permit's APIs. We can get from the project we have created in the Permit dashboard. Also, [here](/overview/connecting-your-app/#1-get-your-permit-environment-api-key) a detailed step-by-step guide on how to create an API key.
-- **Setting up PDP:** Permit provides us with a Policy Decision Point (PDP), which functions as our microservice for authorization. We can use either cloud or a local Docker container to set up the PDP. [Here](/overview/connecting-your-app/#2-setup-your-pdp-policy-decision-point-container) is a detailed guide on how to set up a PDP and get the PDP URL.
+- **Permit API Key:** We need a Permit API key to interact with Permit's APIs. We can get from the project we have created in the Permit dashboard. Also, [here](https://docs.permit.io/overview/connecting-your-app/#1-get-your-permit-environment-api-key) a detailed step-by-step guide on how to create an API key.
+- **Setting up PDP:** Permit provides us with a Policy Decision Point (PDP), which functions as our microservice for authorization. We can use either cloud or a local Docker container to set up the PDP. [Here](https://docs.permit.io/overview/connecting-your-app/#2-setup-your-pdp-policy-decision-point-container) is a detailed guide on how to set up a PDP and get the PDP URL.
 - **GitHub Organization access:** We need a GitHub organization Owner or Admin access to set up webhooks and listen to memberships changes related events. We can set up a GitHub organization [here](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch). It's Free.
 - **Other tools:** Node.js, Docker, etc.
 
 ### Initialize and Install Dependencies
 
-Let's start by creating a new Node.js project and installing the required dependencies. We will be using [Express](https://expressjs.com) to create a simple server and Permit [Node.js SDK](/sdk/nodejs/quickstart-nodejs) to interact with Permit's APIs.
+Let's start by creating a new Node.js project and installing the required dependencies. We will be using [Express](https://expressjs.com) to create a simple server and Permit [Node.js SDK](https://docs.permit.io/sdk/nodejs/quickstart-nodejs) to interact with Permit's APIs.
 
 ```bash
 npm init -y
