@@ -1,4 +1,19 @@
 {
+  "name": "permit-github-webhook",
+  "description": "Node.js server that listens for GitHub organization membership events and syncs the data to Permit accordingly.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "format": "prettier --write '**/*.js'"
+  },
+  "author": "Pradumnasaraf",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Pradumnasaraf/permit-github-webhook/issues"
+  },
+  "homepage": "https://github.com/Pradumnasaraf/permit-github-webhook#readme",
   "dependencies": {
     "dotenv": "^16.5.0",
     "express": "^4.21.2",
@@ -6,16 +21,17 @@
     "permitio": "^2.7.2-rc",
     "ioredis": "^5.3.2"
   },
-  "name": "permit-github-webhook",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pradumnasaraf/permit-github-webhook.git"
   },
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "github",
+    "webhook",
+    "permit",
+    "membership",
+    "sync"
+  ],
   "devDependencies": {
     "prettier": "3.5.3"
   }

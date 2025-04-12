@@ -136,17 +136,20 @@ async function processMembershipEvent(eventId, body) {
 
 app.listen(PORT, async () => {
   // Periodically retry failed events stored in Redis
-  setInterval(async () => {
-    console.log("Retrying failed events from Redis...");
-    const keys = await redis.keys("event:*");
+  setInterval(
+    async () => {
+      console.log("Retrying failed events from Redis...");
+      const keys = await redis.keys("event:*");
 
-    for (const key of keys) {
-      const eventData = await redis.get(key);
-      if (eventData) {
-        await processMembershipEvent(key, JSON.parse(eventData));
+      for (const key of keys) {
+        const eventData = await redis.get(key);
+        if (eventData) {
+          await processMembershipEvent(key, JSON.parse(eventData));
+        }
       }
-    }
-  }, 5 * 60 * 1000); // Retries every 5 minutes
+    },
+    5 * 60 * 1000
+  ); // Retries every 5 minutes
 
   // Recover unprocessed events from Redis on server restart
   console.log("Replaying pending events from Redis after server restart...");
